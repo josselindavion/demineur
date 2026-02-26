@@ -103,7 +103,7 @@ function gererClic(event) {
         caseCliquee.classList.add('mine'); // On ajoute une classe pour afficher la mine
         let ecranLose = document.getElementById('message-lose');
         ecranLose.classList.add('show'); // Affiche le message de défaite
-        alert("Game Over ! Vous avez cliqué sur une mine !"); // On affiche un message de fin de partie
+        ouvertureGrille(); // Révèle toutes les cases pour montrer où étaient les mines
     }
     
     // Si la cas ne contient pas de mine et pas de voisin, on la révèle simplement et on fait la cascade
@@ -123,7 +123,7 @@ function gererClic(event) {
     if (casesDecouvertes === totalCases - totalMines) {
         let ecranWin = document.getElementById('message-win');
         ecranWin.classList.add('show'); // Affiche le message de victoire
-        alert("Félicitations ! Vous avez gagné !");
+        ouvertureGrille(); // Révèle toutes les cases pour montrer où étaient les mines
     }
 
 }
@@ -197,11 +197,18 @@ const resetButton = document.getElementById('reset-button');
 resetButton.addEventListener('click', reset);
 
 function reset() {
-    // Réinitialiser les variables du jeu
+    window.location.reload();
+}
 
-    // Réinitialiser les tableaux de jeu
-
-    // Regénérer la grille visuelle
-
-    // Cacher les messages de victoire/défaite
+function ouvertureGrille() {
+    for (let i = 0; i < totalCases; i++) {
+        const caseElement = document.getElementById(i);
+        if (tableau_voisins[i] === -1) {
+            caseElement.classList.add('mine'); // Affiche la mine
+        } else if (tableau_voisins[i] > 0) {
+            caseElement.textContent = tableau_voisins[i]; // Affiche le nombre de mines voisines
+            caseElement.setAttribute('data-value', tableau_voisins[i]);
+        }
+        caseElement.classList.add('revealed'); // Révèle la case
+    }
 }

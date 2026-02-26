@@ -17,11 +17,15 @@ body {
 
 /* --- LE CONTENEUR DU JEU --- */
 #game-container {
+    /* Garde tous tes styles existants (background, padding, etc.) */
     background-color: #ffffff;
-    padding: 32px; /* Un peu plus d'espace autour (était à 24px) */
+    padding: 32px;
     border-radius: 12px; 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid #cbd5e1; 
+    
+    /* AJOUTE CECI : Définit ce conteneur comme le point de repère */
+    position: relative; 
 }
 
 /* --- L'EN-TÊTE --- */
@@ -117,16 +121,33 @@ body {
 
 /* --- MESSAGES DE FIN DE JEU --- */
 #message-win, #message-lose {
-    position: fixed;
+    /* REMPLACE 'fixed' par 'absolute' */
+    position: absolute; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
+    /* AJOUTE CECI : Pour être sûr que le message passe au-dessus de la grille */
+    z-index: 10; 
+    
+    /* Garde le reste de tes styles (background, padding, bordures, ombres...) */
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: none; /* Masqué par défaut */
+    display: none;
+}
+
+/* Style spécifique pour la Victoire */
+#message-win {
+    border: 2px solid #16a34a; /* Rebord vert */
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.15); /* Ombre verte douce */
+}
+
+/* Style spécifique pour la Défaite */
+#message-lose {
+    border: 2px solid #ef4444; /* Rebord rouge */
+    box-shadow: 0 8px 30px rgba(239, 68, 68, 0.15); /* Ombre rouge douce */
 }
 
 /* --- CLASSES POUR AFFICHER LE MESSAGE --- */
