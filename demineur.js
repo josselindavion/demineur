@@ -191,3 +191,17 @@ function gererClicDroit(event) {
         caseCliquee.classList.add('flagged'); // Sinon, on ajoute un drapeau pour marquer la case
     }
 }
+
+// Gestion du bouton "Recommencer" pour réinitialiser le jeu
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', reset);
+
+function reset() {
+    // Réinitialiser les variables du jeu
+
+    // Réinitialiser les tableaux de jeu
+
+    // Regénérer la grille visuelle
+
+    // Cacher les messages de victoire/défaite
+}
