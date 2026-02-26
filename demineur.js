@@ -101,6 +101,8 @@ function gererClic(event) {
     // On vérifie si la case contient une mine
     if (tableau_voisins[index] === -1) {
         caseCliquee.classList.add('mine'); // On ajoute une classe pour afficher la mine
+        let ecranLose = document.getElementById('message-lose');
+        ecranLose.classList.add('show'); // Affiche le message de défaite
         alert("Game Over ! Vous avez cliqué sur une mine !"); // On affiche un message de fin de partie
     }
     
@@ -119,6 +121,8 @@ function gererClic(event) {
 
     // Après chaque clic, on vérifie si le joueur a gagné en comparant le nombre de mines découvertes avec le nombre total de mines
     if (casesDecouvertes === totalCases - totalMines) {
+        let ecranWin = document.getElementById('message-win');
+        ecranWin.classList.add('show'); // Affiche le message de victoire
         alert("Félicitations ! Vous avez gagné !");
     }
 
