@@ -1,11 +1,14 @@
 // On récupère l'élément HTML qui va contenir notre grille
 const gridElement = document.getElementById('grid');
 
+// On récupère l'element HTML qui contient le compteur de mines
+const compteur = document.getElementById('compteur')
+
 // On définit la taille de notre grille (9 colonnes x 9 lignes = 81 cases)
 const colonnes = 9;
 const lignes = 9;
 const totalCases = colonnes * lignes;
-const totalMines = 10; // Nombre de mines à placer
+let totalMines = 10; // Nombre de mines à placer
 let casesDecouvertes = 0; // Compteur de cases découvertes
 
 // Fonction pour créer le plateau de jeu visuel
@@ -186,9 +189,14 @@ function gererClicDroit(event) {
     // On vérifie si la case est déjà marquée (pour enlever le drapeau) ou pas (pour ajouter un drapeau)
     if (caseCliquee.classList.contains('flagged')) {
         caseCliquee.classList.remove('flagged'); // Si elle est déjà marquée, on enlève le drapeau
+        totalMines++
+        compteur.textContent = totalMines
+        
     }
     else {
         caseCliquee.classList.add('flagged'); // Sinon, on ajoute un drapeau pour marquer la case
+        totalMines--
+        compteur.textContent = totalMines
     }
 }
 
